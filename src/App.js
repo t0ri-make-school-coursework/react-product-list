@@ -1,21 +1,39 @@
 import React, { Component } from 'react'
 import inventory, { categories } from './inventory'
 import './App.css'
+import InventoryItem from './InventoryItem'
 
 class App extends Component {
+    constructor(props) {
+        super(props)
 
-    getCategories() {
-        return categories.map((cat) => <li key={cat}><button>{cat}</button></li>)
+        this.state = {
+            currentCategory: null,
+        }
     }
 
-    getInventory() {
-        return inventory.map(({id, name, price}) => {
+    categoryHandler(newCategory) {
+        this.setState({ currentCategory: newCategory })
+        inventory.filter((item) => {
+            return item.category === this.state.currentCategory || this.state.currentCategory === null
+        })
+    }
+
+    getCategories() {
+        return categories.map((cat) => {
             return (
-                <div key={id}>
-                    <h1>{name}</h1>
-                    <p>{price}</p>
-                </div>
+                <li key={cat}>
+                    <button onClick={() => {this.categoryHandler(cat)}}>
+                        {cat}
+                    </button>
+                </li>
             )
+        }
+    )}
+
+    getItem() {
+        return inventory.map((item) => {
+            return <InventoryItem item={item}/>
         })
     }
 
@@ -29,7 +47,7 @@ class App extends Component {
             </ul>
 
             <ul>
-              {this.getInventory()}
+              {this.getItem()}
             </ul>
 
           </div>
