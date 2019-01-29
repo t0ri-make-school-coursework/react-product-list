@@ -1,25 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import inventory, { categories } from './inventory'
-import './App.css';
+import './App.css'
 
 class App extends Component {
 
-  render() {
-    return (
-      <div className="App">
-        <h1>Show products here</h1>
+    getCategories() {
+        return categories.map((cat) => <li key={cat}><button>{cat}</button></li>)
+    }
 
-        <ul>
-          {/* List product categories here */}
-        </ul>
+    getInventory() {
+        return inventory.map(({id, name, price}) => {
+            return (
+                <div key={id}>
+                    <h1>{name}</h1>
+                    <p>{price}</p>
+                </div>
+            )
+        })
+    }
 
-        <ul>
-          {/* Products listed here */}
-        </ul>
+    render() {
+        return (
+          <div className="App">
+            <h1>Show products here</h1>
 
-      </div>
-    );
-  }
-}
+            <ul>
+              {this.getCategories()}
+            </ul>
+
+            <ul>
+              {this.getInventory()}
+            </ul>
+
+          </div>
+        );
+        }
+    }
 
 export default App;
