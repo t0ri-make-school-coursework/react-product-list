@@ -31,9 +31,13 @@ class App extends Component {
         }
     )}
 
-    getItem() {
+    getItems() {
         return inventory.map((item) => {
-            return <InventoryItem item={item}/>
+            if (this.state.currentCategory === null) {
+                return <InventoryItem item={item} />
+            } else if (item.category === this.state.currentCategory) {
+                return <InventoryItem item={item} />
+            }
         })
     }
 
@@ -42,12 +46,12 @@ class App extends Component {
           <div className="App">
             <h1>Show products here</h1>
 
-            <ul>
+            <ul className="categories">
               {this.getCategories()}
             </ul>
 
             <ul>
-              {this.getItem()}
+              {this.getItems()}
             </ul>
 
           </div>
