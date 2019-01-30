@@ -44,7 +44,7 @@ class App extends Component {
               {this.getCategories()}
             </ul>
 
-            <ul>
+            <ul className="items">
               {this.getItems()}
             </ul>
 

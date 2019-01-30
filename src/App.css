@@ -10,6 +10,7 @@ ul.categories {
 
     list-style-type: none;
 }
+
 li button {
     background-color: #9ec2d8;
     padding: 15px;
@@ -19,6 +20,12 @@ li button {
     outline: none;
 }
 
-li button:hover, li button:active {
+li button:focus, li button:active {
     background-color: #7aabc9;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
 }
