@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import inventory, { categories } from './inventory'
 import './App.css'
 import InventoryItem from './InventoryItem'
+import CategoryButton from './CategoryButton'
 
 class App extends Component {
     constructor(props) {
@@ -14,19 +15,12 @@ class App extends Component {
 
     categoryHandler(newCategory) {
         this.setState({ currentCategory: newCategory })
-        inventory.filter((item) => {
-            return item.category === this.state.currentCategory || this.state.currentCategory === null
-        })
     }
 
     getCategories() {
-        return categories.map((cat) => {
+        return categories.map((category) => {
             return (
-                <li key={cat}>
-                    <button onClick={() => {this.categoryHandler(cat)}}>
-                        {cat}
-                    </button>
-                </li>
+                <CategoryButton category={category} onClick={() => this.categoryHandler(category)}/>
             )
         }
     )}
