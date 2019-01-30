@@ -3,6 +3,7 @@ import inventory, { categories } from './inventory'
 import './App.css'
 import InventoryItem from './InventoryItem'
 import CategoryButton from './CategoryButton'
+import Prices from './Prices'
 
 class App extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class App extends Component {
     getCategories() {
         return categories.map((category) => {
             return (
-                <CategoryButton category={category} onClick={() => this.categoryHandler(category)} currentState={this.state.currentCategory}/>
+                <CategoryButton key={category} category={category} onClick={() => this.categoryHandler(category)} currentState={this.state.currentCategory}/>
             )
         }
     )}
@@ -33,11 +34,18 @@ class App extends Component {
         })
     }
 
+    getPrices() {
+        let total = 0
+        // total of all items
+        return inventory.reduce((total, item) => {
+            console.log(item.price)
+            return total + Number(item.price);
+        })
+    }
+
     render() {
         return (
           <div className="App">
-            <h1>Show products here</h1>
-
             <ul className="categories">
               {this.getCategories()}
               <CategoryButton category='All' onClick={() => this.setState({ currentCategory : null })} currentState={this.state.currentCategory}/>
@@ -46,6 +54,8 @@ class App extends Component {
             <ul className="items">
               {this.getItems()}
             </ul>
+
+            <Prices total={this.getPrices()} />
 
           </div>
         );
