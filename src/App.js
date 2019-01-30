@@ -26,12 +26,10 @@ class App extends Component {
     )}
 
     getItems() {
-        return inventory.map((item) => {
-            if (this.state.currentCategory === null) {
-                return <InventoryItem item={item} />
-            } else if (item.category === this.state.currentCategory) {
-                return <InventoryItem item={item} />
-            }
+        return inventory.filter((item) => {
+            return item.category === this.state.currentCategory || this.state.currentCategory === null
+        }).map((item) => {
+            return <InventoryItem item={item} />
         })
     }
 
@@ -42,6 +40,7 @@ class App extends Component {
 
             <ul className="categories">
               {this.getCategories()}
+              <CategoryButton category='All' onClick={() => this.setState({ currentCategory : null })} />
             </ul>
 
             <ul className="items">
