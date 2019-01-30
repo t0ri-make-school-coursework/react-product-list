@@ -22,7 +22,7 @@ li button {
     outline: none;
 }
 
-li button:focus, li button:active {
+li button.selected {
     background-color: #67a0c2;
     padding: 17px;
 }

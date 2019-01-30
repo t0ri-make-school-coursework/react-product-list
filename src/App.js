@@ -20,7 +20,7 @@ class App extends Component {
     getCategories() {
         return categories.map((category) => {
             return (
-                <CategoryButton category={category} onClick={() => this.categoryHandler(category)}/>
+                <CategoryButton category={category} onClick={() => this.categoryHandler(category)} currentState={this.state.currentCategory}/>
             )
         }
     )}
@@ -40,7 +40,7 @@ class App extends Component {
 
             <ul className="categories">
               {this.getCategories()}
-              <CategoryButton category='All' onClick={() => this.setState({ currentCategory : null })} />
+              <CategoryButton category='All' onClick={() => this.setState({ currentCategory : null })} currentState={this.state.currentCategory}/>
             </ul>
 
             <ul className="items">
