@@ -6,7 +6,7 @@ export default class CategoryButton extends Component {
 
         return (
             <li key={category}>
-                <button onClick={this.props.onClick()}>
+                <button onClick={this.props.onClick}>
                     {category}
                 </button>
             </li>
